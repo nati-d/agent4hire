@@ -9,7 +9,7 @@ interface PricingTier {
 	price: string;
 	features: string[];
 	buttonText: string;
-	buttonVariant: "default" | "outline" ;
+	// buttonVariant: "default" | "outline" ;
 	popular?: boolean;
 }
 
@@ -17,17 +17,15 @@ interface PricingCardProps {
 	tier: PricingTier;
 }
 
-export function SubscriptionCard({name,description,price,features,buttonText,buttonVariant,popular}: PricingTier) {
+export function SubscriptionCard({name, description, price, features, buttonText, popular}: PricingTier) {
 	return (
 		<Card className={`flex flex-col ${popular ? "border-primary shadow-lg" : ""}`}>
 			<CardHeader>
 				<div className='flex items-center justify-between'>
 					<h3 className='text-[20px] font-bold'>{name}</h3>
 					{popular && (
-						<div
-							className='text-[10px] flex items-center gap-2 bg-[#4423E60D] border border-primary rounded-full px-2 font-semibold'
-						>
-							<Sparkle className='w-2 h-h text-primary' />
+						<div className='text-[10px] flex items-center gap-2 bg-[#4423E60D] border border-primary rounded-full px-2 font-semibold'>
+							<Sparkle className='w-2 h-2 text-primary' />
 							Most-Popular
 						</div>
 					)}
@@ -37,7 +35,7 @@ export function SubscriptionCard({name,description,price,features,buttonText,but
 			</CardHeader>
 			<CardContent className='flex-1'>
 				<Button
-					variant={buttonVariant}
+					variant={name === "Pro" ? "default" : "outline"} // Conditional variant
 					className='w-full'
 					size='lg'
 				>

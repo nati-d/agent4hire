@@ -46,7 +46,7 @@ const SubscriptionPlan = () => {
                         price = {tier.price}
                         features = {tier.features}
                         buttonText = {tier.buttonText}
-                        buttonVariant = {tier.buttonVariant}
+                        // buttonVariant = {tier.buttonVariant}
                         popular = {tier.popular}
 					/>
 				))}
