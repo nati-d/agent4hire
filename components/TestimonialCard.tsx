@@ -25,7 +25,7 @@ export function TestimonialCard({name, role, image, quote}: TestimonialCardProps
 						</div>
 					</div>
 					<hr className='w-full border border-gray-400' />
-					<blockquote className='text-gray-500 text-[14px]'>"{quote}"</blockquote>
+					<blockquote className='text-gray-500 text-[14px]'>&ldquo;{quote}&ldquo;</blockquote>
 				</div>
 			</CardContent>
 		</Card>

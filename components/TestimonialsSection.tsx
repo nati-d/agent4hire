@@ -72,7 +72,7 @@ const TestimonialsSection = () => {
 				<h1 className='text-[32px] font-semibold'>
 					What Our Users Are <span className='text-primary'>Saying</span>
 				</h1>
-				<p className="text-[14px]">Hear from businesses and individuals who&apos;ve transformed their workflows with our AI agents.</p>
+				<p className='text-[14px]'>Hear from businesses and individuals who&apos;ve transformed their workflows with our AI agents.</p>
 			</div>
 			<div
 				className='embla__viewport my-8'
@@ -81,6 +81,7 @@ const TestimonialsSection = () => {
 				<div className='embla__container space-x-10'>
 					{Testimonials.map((testimonial, index) => (
 						<TestimonialCard
+							key={index}
 							name={testimonial.name}
 							role={testimonial.role}
 							quote={testimonial.quote}

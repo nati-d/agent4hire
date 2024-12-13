@@ -11,7 +11,7 @@ const IntegratedApps = ({availableApis}:IntegratedAppsProps) => {
 			<div className='flex flex-wrap items-center px-2 gap-2'>
 				{availableApis &&
 					availableApis.map((api, idx) => (
-						<div className='bg-purple-custom px-4 py-1 text-[12px] rounded-full border border-gray-600 text-gray-600'>{api}</div>
+						<div key={idx} className='bg-purple-custom px-4 py-1 text-[12px] rounded-full border border-gray-600 text-gray-600'>{api}</div>
 					))}
 			</div>
 		</div>

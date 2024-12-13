@@ -60,8 +60,8 @@ export default function ChartSection({charts}: ChartSectionProps) {
 					</CardContent>
 				</Card>
 			))}
-			{Array.from({length: placeholders}).map(() => (
-				<SoftwareAd software={sampleSoftware} />
+			{Array.from({length: placeholders}).map((_, index) => (
+				<SoftwareAd key={index} software={sampleSoftware} />
 			))}
 		</div>
 	);

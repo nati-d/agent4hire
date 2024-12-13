@@ -51,7 +51,10 @@ function GoalSection({title, goals}: {title: string; goals: Goal[]}) {
 			</div>
 			<div className='space-y-2 '>
 				{goals.map((goal, index) => (
-					<div className={`p-2 md:p-4 rounded-md border w-[100%] border-l-4 border-l-purple-custom light-gradient`}>
+					<div
+						key={index}
+						className={`p-2 md:p-4 rounded-md border w-[100%] border-l-4 border-l-purple-custom light-gradient`}
+					>
 						<div className='flex justify-between items-center'></div>
 						<p className='text-[12px] md:text-[14px] text-gray-500'>{goal.title}</p>
 					</div>
