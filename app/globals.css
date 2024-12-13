@@ -1,0 +1,151 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+@layer base {
+	:root {
+		--primary: 263, 100%, 41%;
+		--primary-foreground: 210 40% 98%;
+		--background: 0 0% 100%;
+		--foreground: 222.2 47.4% 11.2%;
+		--text: 222.2 47.4% 11.2%;
+		--text-foreground: 210 40% 98%;
+		--muted: 210 40% 96.1%;
+		--muted-foreground: 215.4 16.3% 46.9%;
+		--card: 0 0% 100%;
+		--card-foreground: 222.2 47.4% 11.2%;
+		--popover: 0 0% 100%;
+		--popover-foreground: 222.2 47.4% 11.2%;
+		--border: 214.3 31.8% 91.4%;
+		--input: 214.3 31.8% 91.4%;
+		--secondary: 210 40% 96.1%;
+		--secondary-foreground: 222.2 47.4% 11.2%;
+		--accent: 210 40% 96.1%;
+		--accent-foreground: 222.2 47.4% 11.2%;
+		--destructive: 0 100% 50%;
+		--destructive-foreground: 210 40% 98%;
+		--chart-1: 234, 100%, 53%;
+		--chart-2: 12 76% 61%;
+		--chart-3: 197 37% 24%;
+		--chart-4: 43 74% 66%;
+		--chart-5: 27 87% 67%;
+		--sidebar-background: 0 0% 98%;
+		--sidebar-foreground: 240 5.3% 26.1%;
+		--sidebar-primary: 240 5.9% 10%;
+		--sidebar-primary-foreground: 0 0% 98%;
+		--sidebar-accent: 240 4.8% 95.9%;
+		--sidebar-accent-foreground: 240 5.9% 10%;
+		--sidebar-border: 220 13% 91%;
+		--sidebar-ring: 217.2 91.2% 59.8%;
+	}
+	.dark {
+		--sidebar-background: 240 5.9% 10%;
+		--sidebar-foreground: 240 4.8% 95.9%;
+		--sidebar-primary: 224.3 76.3% 48%;
+		--sidebar-primary-foreground: 0 0% 100%;
+		--sidebar-accent: 240 3.7% 15.9%;
+		--sidebar-accent-foreground: 240 4.8% 95.9%;
+		--sidebar-border: 240 3.7% 15.9%;
+		--sidebar-ring: 217.2 91.2% 59.8%;
+	}
+}
+
+@layer utilities {
+	.bg-background {
+		background-color: #f8fafc; /* Replace with your desired background color */
+	}
+	.border-border {
+		border-color: #e5e7eb; /* Replace with your desired border color */
+	}
+}
+
+body {
+	font-family: "Poppins", sans-serif;
+	color: #1f1f1f;
+}
+
+.container {
+	max-width: 1296px;
+	margin: 0 auto;
+	padding: 0 20px;
+}
+
+@layer utilities {
+	.text-balance {
+		text-wrap: balance;
+	}
+}
+
+@layer base {
+	body {
+		@apply bg-background;
+	}
+}
+
+.swiper {
+	width: 100%;
+	height: 300px;
+}
+
+.swiper-slide {
+	text-align: center;
+	font-size: 18px;
+	background: #fff;
+
+	/* Center slide text vertically */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.swiper-slide img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+/* @layer base {
+	* {
+		@apply border-border;
+	}
+	body {
+		@apply bg-background ;
+	}
+} */
+
+.gradient {
+	background: #7517e2;
+	background: -webkit-linear-gradient(90deg, #7517e2 0%, #1799e2 100%);
+	background: linear-gradient(90deg, #7517e2 0%, #1799e2 100%);
+}
+
+.gradient-text {
+	background: #7517e2;
+	background: -webkit-linear-gradient(90deg, #7517e2 0%, #1799e2 100%);
+	background: linear-gradient(90deg, #7517e2 0%, #1799e2 100%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+.gradient-border {
+	border: 5px solid; /* Border width */
+	border-image-source: linear-gradient(90deg, #7517e2 0%, #1799e2 100%);
+	border-image-slice: 1; /* Full border */
+	border-radius: 8px; /* Optional: to round corners */
+}
+
+.light-gradient {
+	background: rgba(118, 23, 227, 0.14);
+	background: -webkit-linear-gradient(0deg, rgba(118, 23, 227, 0.14) 0%, #ffffff 100%);
+	background: linear-gradient(0deg, rgba(118, 23, 227, 0.14) 0%, #ffffff 100%);
+}
+
+.purple {
+	background-color: #4423e60d;
+}
+
+.poppins {
+	font-family: "Poppins", sans-serif;
+}
