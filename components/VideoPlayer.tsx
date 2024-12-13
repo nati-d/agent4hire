@@ -29,7 +29,7 @@ const VideoPlayer = () => {
 					</div>
 				)}
 				<ReactPlayer
-					url='https://youtu.be/k-o6elGNLqQ?si=7iJqRZxrnz0_QHor'
+					url='https://youtu.be/VCPGMjCW0is?si=IYluaeBbkysf2mLz'
 					controls
 					width='100%'
 					height='100%'
