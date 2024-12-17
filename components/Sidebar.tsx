@@ -79,17 +79,17 @@ export function CustomSidebar() {
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
-      <SidebarContent>
+      <SidebarContent className='px-4 mt-4'>
         <ScrollArea className="h-[calc(100vh-200px)]">
           <SidebarMenu>
             {menuItems.map((item) => (
-              <SidebarMenuItem key={item.label}>
+              <SidebarMenuItem key={item.label} className='hover:gradient'>
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <SidebarMenuButton asChild className="w-full justify-start">
                       <button className="flex items-center w-full text-left">
-                        <item.icon className="h-5 w-5 shrink-0" />
-                        {!isCollapsed && <span className="ml-3">{item.label}</span>}
+                        <item.icon className="h-3 w-3 shrink-0" />
+                        {!isCollapsed && <span className="ml-3 text-[12px]">{item.label}</span>}
                       </button>
                     </SidebarMenuButton>
                   </TooltipTrigger>
@@ -101,18 +101,21 @@ export function CustomSidebar() {
         </ScrollArea>
       </SidebarContent>
       <SidebarFooter>
-        <div className="px-3 py-2">
-          <Button
-            variant="outline"
-            className="w-full justify-center"
-            onClick={toggleSidebar}
-          >
-            {isCollapsed ? <ChevronRight className="h-4 w-4" /> : <ChevronLeft className="h-4 w-4" />}
-          </Button>
+      <div className="px-3 py-4">
+          <div className="rounded-lg light-gradient p-4 shadow-lg border border-sidebar-border">
+            <h3 className="text-[16px] text-center font-bold mb-2">Upgrade to Pro</h3>
+            <p className="mb-4 text-center text-[10px] text-sidebar-muted">Get unlimited chats and advanced features!</p>
+            <Button className="w-full gradient text-sidebar-primary-foreground hover:bg-sidebar-primary/90">
+              Upgrade Now
+            </Button>
+          </div>
         </div>
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>
   )
 }
+
+
+
 

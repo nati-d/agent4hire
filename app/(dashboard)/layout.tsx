@@ -1,3 +1,5 @@
+import DashboardNavbar from "@/components/DashboardNavbar";
+import Navbar from "@/components/Navbar";
 import { CustomSidebar } from "@/components/Sidebar";
 import { SidebarProvider } from "@/components/ui/sidebar";
 
@@ -10,12 +12,19 @@ export const metadata = {
 export default function DashboardLayout({children}: {children: React.ReactNode}) {
 	return (
 		<html lang='en'>
-			<body className="flex gap-4 h-screen">
-                <SidebarProvider>
-
-                <CustomSidebar/>
-                </SidebarProvider>
+			<body className="flex h-screen w-full">
+				<div className="w-max ">
+					<SidebarProvider>
+						<CustomSidebar/>
+					</SidebarProvider>
+				</div>
+				<div className="flex flex-col gap-2 w-full ">
+					<DashboardNavbar />
                 {children}
+
+				</div>
+
+
                 </body>
 		</html>
 	);
