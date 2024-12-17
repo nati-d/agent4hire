@@ -21,6 +21,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/(root)/page.tsx", "app/(root)/layout.tsx", "app/layout.jsx", "app/(utility)/dashboard/[id]/page.jsx", "components/dashboard/CTA.jsx", "utils/constants.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/(root)/page.tsx", "app/(root)/layout.tsx", "app/layout.tsx", "app/(utility)/dashboard/[id]/page.jsx", "components/dashboard/CTA.jsx", "utils/constants.js"],
   "exclude": ["node_modules"]
 }
