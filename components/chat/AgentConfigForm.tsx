@@ -28,7 +28,7 @@ const AgentConfigForm: React.FC<AgentConfigFormProps> = ({ onSubmit }) => {
             className="mt-1 block w-full placeholder:text-[12px] text-[12px]"
             placeholder="e.g., Customer Support Agent, Data Analyst, Creative Writer"
           />
-          {errors.role && <p className="text-red-500 text-sm mt-1">{errors.role.message}</p>}
+          {errors.role && <p className="text-red-500 text-[10px] mt-1">{errors.role.message}</p>}
           <p className="text-gray-500 text-xs mt-1">Define the primary function or job title of your AI agent.</p>
         </div>
         <div>
@@ -40,7 +40,7 @@ const AgentConfigForm: React.FC<AgentConfigFormProps> = ({ onSubmit }) => {
             rows={4}
             placeholder="Describe the agent's responsibilities, expertise, and any specific instructions..."
           />
-          {errors.description && <p className="text-red-500 text-sm mt-1">{errors.description.message}</p>}
+          {errors.description && <p className="text-red-500 text-[10px] mt-1">{errors.description.message}</p>}
           <p className="text-gray-500 text-xs mt-1">Provide a detailed description of the agent&apos;s capabilities, knowledge areas, and how it should interact.</p>
         </div>
         <div className="flex justify-center mt-8">
