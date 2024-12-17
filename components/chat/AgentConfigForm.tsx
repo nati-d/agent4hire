@@ -41,7 +41,7 @@ const AgentConfigForm: React.FC<AgentConfigFormProps> = ({ onSubmit }) => {
             placeholder="Describe the agent's responsibilities, expertise, and any specific instructions..."
           />
           {errors.description && <p className="text-red-500 text-sm mt-1">{errors.description.message}</p>}
-          <p className="text-gray-500 text-xs mt-1">Provide a detailed description of the agent's capabilities, knowledge areas, and how it should interact.</p>
+          <p className="text-gray-500 text-xs mt-1">Provide a detailed description of the agent&apos;s capabilities, knowledge areas, and how it should interact.</p>
         </div>
         <div className="flex justify-center mt-8">
           <Button 
