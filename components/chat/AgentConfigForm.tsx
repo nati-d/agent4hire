@@ -8,17 +8,20 @@ import { FormData, formSchema } from '@/utils/schema/createAgentSchema'
 
 interface AgentConfigFormProps {
   onSubmit: (data: FormData) => void
+  isSubmitting: boolean
 }
 
-const AgentConfigForm: React.FC<AgentConfigFormProps> = ({ onSubmit }) => {
+const AgentConfigForm: React.FC<AgentConfigFormProps> = ({ onSubmit, isSubmitting }) => {
   const { register, handleSubmit, formState: { errors } } = useForm<FormData>({
-    resolver: zodResolver(formSchema)
+    resolver: zodResolver(formSchema),
   })
 
   return (
-    <div className="max-w-3xl mx-auto mt-8 p-8 ">
+    <div className="max-w-3xl mx-auto mt-8 p-8">
       <h2 className="text-3xl font-bold mb-2 text-center text-gray-800">Agent Configuration</h2>
-      <p className="text-center text-[14px] text-gray-600 mb-8">Configure your AI agent by specifying its role and description.</p>
+      <p className="text-center text-[14px] text-gray-600 mb-8">
+        Configure your AI agent by specifying its role and description.
+      </p>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
         <div>
           <label htmlFor="role" className="block text-[12px] font-medium text-gray-700 mb-1">Role</label>
@@ -44,12 +47,25 @@ const AgentConfigForm: React.FC<AgentConfigFormProps> = ({ onSubmit }) => {
           <p className="text-gray-500 text-xs mt-1">Provide a detailed description of the agent&apos;s capabilities, knowledge areas, and how it should interact.</p>
         </div>
         <div className="flex justify-center mt-8">
-          <Button 
+          {
+            isSubmitting ? (
+              <Button 
+              disabled
+              type="submit"
+              className="w-full px-6 py-3 gradient text-white-a0 font-semibold rounded-lg shadow-md hover:opacity-80 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75 transition duration-300 ease-in-out"
+            >
+              Creating Agent...
+            </Button>
+            ):(
+<Button 
             type="submit"
             className="w-full px-6 py-3 gradient text-white-a0 font-semibold rounded-lg shadow-md hover:opacity-80 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75 transition duration-300 ease-in-out"
           >
             Create Agent
           </Button>
+            )
+          }
+          
         </div>
       </form>
     </div>
@@ -57,4 +73,3 @@ const AgentConfigForm: React.FC<AgentConfigFormProps> = ({ onSubmit }) => {
 }
 
 export default AgentConfigForm
-

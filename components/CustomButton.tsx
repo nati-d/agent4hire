@@ -10,7 +10,7 @@ interface CustomButtonProps {
 const CustomButton: React.FC<CustomButtonProps> = ({label, additionalClass = "", icon, onClick}) => {
 	return (
 		<button
-			className={`${additionalClass} py-1 flex gap-2 items-center justify-center`}
+			className={`${additionalClass} py-1 text-[14px] font-[500] flex gap-2 items-center justify-center`}
 			onClick={onClick}
 		>
 			{icon && <span>{icon}</span>}

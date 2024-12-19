@@ -205,9 +205,9 @@ const AgentCard: React.FC<AgentCardProps> = ({
 	};
 
 	return (
-		<div className='p-2 rounded-lg border shadow-md border-[#4423E60D] max-w-[400px] '>
+		<div className='p-[16px] rounded-lg border  border-[#4423E61A] max-w-[400px] '>
 			{/* Header Section */}
-			<div className='relative rounded-md w-full h-[150px] overflow-hidden pt-2'>
+			<div className='relative rounded-md w-full h-[220px] overflow-hidden pt-2'>
 				<div className='absolute w-full flex justify-between items-center z-20 px-2'>
 					<div className='light-gradient rounded-full p-1'>
 						<div className='bg-white-a0 px-2 py-1 rounded-full text-[12px]'>
@@ -230,18 +230,18 @@ const AgentCard: React.FC<AgentCardProps> = ({
 			{/* Rating and Info Section */}
 			<div className='w-full flex items-center justify-between mt-1'>
 				<StarRating rating={rating} />
-				<span className='text-[14px]'>{rating}</span>
+				<span className='text-[16px] font-[400]'>{rating}</span>
 			</div>
 
-			<h1 className='text-[16px] font-bold line-clamp-1'>{role}</h1>
-			<p className='text-[12px] mt-2 text-gray-500 line-clamp-2'>{userPersona}</p>
+			<h1 className='text-[24px] font-bold line-clamp-1'>{role}</h1>
+			<p className='text-[14px] font-[300] mt-2 text-gray-500 line-clamp-2'>{userPersona}</p>
 
 			{/* Tags Section */}
 			<div className='flex flex-wrap gap-2 items-center my-2'>
 				{tags.map((tag, index) => (
 					<div
 						key={index}
-						className='bg-[#4423E60D] px-2 py-1 text-[10px] rounded-full'
+						className='bg-[#4423E60D] px-[8px] py-[4px] text-[12px] font-[400] rounded-full'
 					>
 						{tag}
 					</div>
@@ -252,13 +252,13 @@ const AgentCard: React.FC<AgentCardProps> = ({
 			<div className='flex justify-center gap-3 mt-1 w-full'>
 				<CustomButton
 					label='Preview'
-					icon={<Eye className='w-4 h-4 text-primary' />}
-					additionalClass='bg-[#4423E60D] gradient-text rounded-lg flex-1 border border-primary py-1 px-2 text-[12px]'
+					icon={<Eye className='w-[16px] h-[16px] text-primary' />}
+					additionalClass='bg-[#4423E60F] gap-[8px] py-[8px] px-[12px] gradient-text rounded-lg flex-1 border border-purple-custom py-1 px-2 text-[14px]'
 					onClick={handleOpen}
 				/>
 				<CustomButton
 					label='Hire Now'
-					additionalClass='gradient border rounded-lg py-2 px-4 text-[12px] text-white-a0'
+					additionalClass='gradient border rounded-lg py-2 px-4 text-[14px] text-white-a0'
 					icon={
 						<div className='p-1 border border-white-a0 rounded-full'>
 							<Rocket className='w-3 h-3 text-white-a0' />

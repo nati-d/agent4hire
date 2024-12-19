@@ -11,21 +11,21 @@ const VideoPlayer = () => {
 	};
 
 	return (
-		<div className='max-w-[1200px] h-[80dvh] p-2 gradient rounded-md relative'>
+		<div className='max-w-[1200px] h-[60dvh] p-2 gradient rounded-md relative'>
 			<div className='w-full h-full p-2 bg-black relative'>
 				{!playing && (
 					<div className='absolute h-full w-full flex items-center justify-center'>
-						<div className='bg-gray-200 rounded-full p-1'>
-							<div className='gradient p-1 rounded-full'>
+						{/* <div className='bg-gray-100  rounded-full p-1'> */}
+							<div className='border-4 bg-gray-100 backdrop-blur-2xl border-gray-100 border-bac p-1 rounded-full'>
 								<button
 									onClick={handlePlay}
-									className='inset-0 flex items-center justify-center gap-4 text-black bg-white-a0 py-2 px-4 rounded-full'
+									className='inset-0 flex items-center justify-center gap-4 text-black backdrop-blur-3xl border-4 border-primary py-2 px-4 rounded-full'
 								>
 									<Play className='w-4 h-4 text-primary' />
 									Watch Demo
 								</button>
 							</div>
-						</div>
+						{/* </div> */}
 					</div>
 				)}
 				<ReactPlayer

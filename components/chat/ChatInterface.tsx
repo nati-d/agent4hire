@@ -4,6 +4,9 @@ import AgentConfigForm from './AgentConfigForm'
 import ChatMessage from './ChatMessage'
 import ChatInput from './ChatInput'
 import { FormData } from '@/utils/schema/createAgentSchema'
+import { createAgent, createGoals } from '@/api'
+import LoadingScreen from './LoadingScreen'
+
 
 interface Message {
   sender: 'user' | 'ai'
@@ -12,62 +15,134 @@ interface Message {
 
 const ChatInterface: React.FC = () => {
   const [showChat, setShowChat] = useState(false)
-  const [messages, setMessages] = useState<Message[]>([
-    { sender: 'ai', text: 'What are the most common questions your customers ask?' },
-    { sender: 'user', text: 'Order tracking and shipping status.' },
-    { sender: 'ai', text: 'Do you want the agent to handle returns, refunds, or order tracking?' },
-    { sender: 'user', text: 'Yes, all three.' },
-    { sender: 'ai', text: 'What tone or personality should the agent have?' },
-    { sender: 'user', text: 'Friendly and conversational.' },
-  ])
-
+  const [messages, setMessages] = useState<Message[]>([]) 
+  const [questions, setQuestions] = useState<string[]>([]) 
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0)
+  const [answers, setAnswers] = useState<string[]>([]) 
   const [input, setInput] = useState('')
+  const [loading, setLoading] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
   const chatContainerRef = useRef<HTMLDivElement>(null)
 
-  // Auto-scroll to the bottom when messages change
   useEffect(() => {
     if (chatContainerRef.current) {
       chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight
     }
   }, [messages])
 
-  // Handle sending a message
+  useEffect(() => {
+    if (questions.length > 0 && currentQuestionIndex < questions.length) {
+      setMessages((prev) => [...prev, { sender: 'ai', text: questions[currentQuestionIndex] }]);
+    }
+  }, [currentQuestionIndex]); 
+  
+
+
   const handleSend = () => {
-    if (input.trim()) {
-      setMessages([...messages, { sender: 'user', text: input.trim() }])
-      setInput('')
-      // Simulate an AI response
-      setTimeout(() => {
-        setMessages(prev => [
+    if (input.trim() === '' || currentQuestionIndex >= questions.length) return;
+  
+    const currentInput = input;
+  
+    setMessages((prev) => [
+      ...prev,
+      { sender: 'user', text: currentInput },
+    ]);
+    setAnswers((prev) => [...prev, currentInput]);
+    setInput('');
+  
+    if (currentQuestionIndex === questions.length - 1) {
+      handleBatchSubmission([...answers, currentInput]);
+    } else {
+      setCurrentQuestionIndex((prev) => prev + 1);
+    }
+  };
+
+
+ const handleBatchSubmission = async (currentAnswers: string[]) => {
+  try {
+    console.log('Submitting answers:', currentAnswers);
+    setAnswers([]);
+    
+    const response = await createAgent({ answers: currentAnswers }, 1);
+
+    const newQuestions = response.questions || [];
+    if (newQuestions.length > 0) {
+      setMessages((prev) => [
+        ...prev,
+        { sender: 'ai', text: 'Thank you for answering these questions! Let\'s move on to the next set.' },
+      ]);
+      setQuestions(newQuestions);
+      setCurrentQuestionIndex(0);
+    } else {
+      console.log('All questions answered, creating goals...');
+      try {
+        setLoading(true);
+        const goalsResponse = await createGoals();
+        console.log(goalsResponse);
+        setMessages((prev) => [
           ...prev,
-          { sender: 'ai', text: 'Thanks for sharing! Let me know if you need more help.' },
-        ])
-      }, 1000)
+          { sender: 'ai', text: 'All questions answered! Your agent is being created.' },
+        ]);
+        setLoading(false)
+      } catch (error) {
+        console.error('Error creating goals:', error);
+        setMessages((prev) => [
+          ...prev,
+          { sender: 'ai', text: 'An error occurred while creating your agent. Please try again later.' },
+        ]);
+      }
+    }
+  } catch (error) {
+    console.error('Error submitting answers:', error);
+    setMessages((prev) => [
+      ...prev,
+      { sender: 'ai', text: 'Something went wrong. Please try again later.' },
+    ]);
+  }
+};
+
+  const onSubmit = async (data: FormData) => {
+    try {
+      setIsSubmitting(true)
+      localStorage.setItem("role", data.role)
+      const response = await createAgent(data, -1) 
+      console.log('Agent created successfully:', response)
+
+      const receivedQuestions = response.questions || []
+      setQuestions(receivedQuestions)
+
+      if (receivedQuestions.length > 0) {
+        setMessages([{ sender: 'ai', text: receivedQuestions[0] }])
+        setCurrentQuestionIndex(0)
+      }
+      setShowChat(true)
+      setIsSubmitting(false)
+    } catch (error) {
+      console.error('Error creating agent:', error)
     }
   }
 
-  const onSubmit = (data: FormData) => {
-    console.log(data)
-    setShowChat(true)
+  if (!showChat) {
+    return <AgentConfigForm onSubmit={onSubmit} isSubmitting={isSubmitting} />
   }
 
-  if (!showChat) {
-    return <AgentConfigForm onSubmit={onSubmit} />
+  if (loading) {
+    return <LoadingScreen/>
   }
 
   return (
     <div className="max-w-3xl mx-auto h-[calc(90vh-80px)] shadow-md border mt-8 rounded-lg w-full flex flex-col relative">
-      {/* Chat Messages */}
-      <div
-        className="flex-1 overflow-y-auto p-4 space-y-4 pb-20"
-        ref={chatContainerRef}
-      >
+      {/* Chat messages container */}
+      <div className="flex-1 overflow-y-auto p-4 space-y-4 pb-20" ref={chatContainerRef}>
         {messages.map((msg, index) => (
           <ChatMessage key={index} sender={msg.sender} text={msg.text} />
         ))}
+        {loading && (
+          <div className="text-[10px] text-gray-500">AI is typing...</div>
+        )}
       </div>
 
-      {/* Input Area */}
+      {/* Chat input */}
       <ChatInput input={input} setInput={setInput} handleSend={handleSend} />
     </div>
   )

@@ -1,12 +1,12 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import fetchAgents from "@/api/agents_api";
 import AgentCard from "@/components/AgentCard";
 import SearchInterface from "@/components/SearchInterface";
 import Pagination from "@/components/Pagination";
 import AgentSkeleton from "@/components/AgentSkeleton";
 import NoDataIllustration from "@/components/Shared/NoDataIllustration";
+import { fetchAgents } from "@/api";
 
 const AGENTS_PER_PAGE = 12;
 

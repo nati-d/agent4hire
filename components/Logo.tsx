@@ -7,7 +7,7 @@ const Logo = () => {
 			href='/'
 			className='flex-shrink-0'
 		>
-			<h1 className="gradient-text text-[24px] font-bold">Agent4Hire</h1>
+			<h1 className="gradient-text text-[32px] font-bold">Agent4Hire</h1>
 		</Link>
 	);
 };

@@ -19,12 +19,12 @@ const HowItWork = () => {
 				<p className='text-gray-600 text-[14px] mt-2'>Discover how our solution streamlines your workflows in just three simple steps.</p>
 			</div>
 
-			<div className='grid grid-cols-1 md:grid-cols-2 mt-8 gap-8'>
+			<div className='grid grid-cols-1 md:grid-cols-2 mt-8 gap-8 items-center justify-center'>
 				{/* Video Section */}
 				<VideoPlayer />
 
 				{/* Steps Section */}
-				<div className='flex flex-col gap-12 justify-center items-center'>
+				<div className='flex flex-col gap-8 justify-center items-center'>
 					{/* Step 1 */}
 					<div className='flex items-center gap-6 border border-primary py-6 px-4 rounded-3xl max-w-md'>
 						<div className='gradient p-1 rounded-full'>
@@ -33,10 +33,9 @@ const HowItWork = () => {
 							</div>
 						</div>
 						<div>
-							<h2 className='text-[20px] font-semibold'>Step One: Create an Account</h2>
+							<h2 className='text-[16px] font-semibold'>Step One: Define the Agent via Chat</h2>
 							<p className='text-[14px] text-gray-600 mt-2'>
-								Sign up and create your profile in minutes. Start by entering your basic information and preferences.
-							</p>
+							Users provide detailed descriptions of their desired AI assistant through an interactive chat interface.							</p>
 						</div>
 					</div>
 
@@ -48,9 +47,9 @@ const HowItWork = () => {
 							</div>
 						</div>
 						<div>
-							<h2 className='text-[20px] font-semibold'>Step Two: Customize Your Workflow</h2>
+							<h2 className='text-[16px] font-semibold'>Step Two: Schedule Task Durations</h2>
 							<p className='text-[14px] text-gray-600 mt-2'>
-								Set up integrations with tools like Slack, Trello, or Google Workspace to enhance productivity.
+							Users set specific timeframes and schedules for the tasks they want the assistant to perform.
 							</p>
 						</div>
 					</div>
@@ -63,10 +62,9 @@ const HowItWork = () => {
 							</div>
 						</div>
 						<div>
-							<h2 className='text-[20px] font-semibold'>Step Three: Achieve Your Goals</h2>
+							<h2 className='text-[16px] font-semibold'>Step Three: Select Pre-built Agents</h2>
 							<p className='text-[14px] text-gray-600 mt-2'>
-								Start using the platform to manage tasks, track progress, and achieve results more effectively.
-							</p>
+							If users prefer simplicity, they can choose from pre-configured agents tailored to common needs, avoiding the customization process.							</p>
 						</div>
 					</div>
 				</div>

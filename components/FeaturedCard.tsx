@@ -11,11 +11,11 @@ interface Feature {
 }
 
 const features = [
-	{name: "Feature One", description: "Feature description for the first card goes here."},
-	{name: "Feature Two", description: "Seamlessly connect with platforms like Slack, Trello, CRM systems, or APIs for enhanced workflows."},
-	{name: "Feature Three", description: "Feature description for the third card goes here."},
-	{name: "Feature Four", description: "Feature description for the fourth card goes here."},
-	{name: "Feature Five", description: "Feature description for the fifth card goes here."},
+	{name: "Customizable AI Assistants", description: "Allows users to design AI assistants tailored to their team roles and goals."},
+	{name: "Hierarchical Framework", description: "Structures AI assistants by team, agent, goal, sub-goal, and workstream for optimized task alignment."},
+	{name: "Pre-built AI Assistants", description: "Offers ready-to-use assistants with preconfigured goals and metrics for rapid deployment."},
+	{name: "Performance Tracking and Feedback", description: "Monitors AI assistant effectiveness with real-time metrics and user feedback loops."},
+	{name: "Dynamic API Integration", description: "Employs a hierarchical structure for selecting and integrating APIs to match task requirements efficiently."},
 ];
 
 const FeatureCards = () => {
@@ -24,13 +24,13 @@ const FeatureCards = () => {
 			{features.map((feature, index) => (
 				<div
 					key={index}
-					className={`flex flex-col items-center justify-center border border-primary rounded-lg p-8 gap-3 w-[350px] ${
-						index === 1 ? "col-span-2 md:col-span-1 lg:col-span-1" : ""
+					className={`flex flex-col items-center justify-center py-[24px] px-[12px] border border-primary bg-[#4423E605] rounded-lg p-8 gap-3  max-w-[334px] ${
+						index === 1 ? "py-[32px]" : ""
 					}`}
 				>
 					<PawPrint className='h-12 w-12 text-primary' />
-					<h1 className='text-center font-semibold text-[20px]'>{feature.name}</h1>
-					<p className='text-center text-[12px]'>{feature.description}</p>
+					<h1 className='text-center font-[600] text-[22px]'>{feature.name}</h1>
+					<p className='text-center text-[14px]'>{feature.description}</p>
 				</div>
 			))}
 		</div>

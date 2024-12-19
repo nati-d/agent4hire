@@ -147,5 +147,13 @@ body {
 }
 
 .poppins {
-	font-family: "Poppins", sans-serif;
+	font-family: "Poppins", sans-serifrgba( 0, 0, 0, 0.18 );
+}
+
+.glass {
+	background: rgba( 255, 255, 255, 0.7 );
+	backdrop-filter: blur( 3.5px );
+	-webkit-backdrop-filter: blur( 3.5px );
+	border-radius: 10px;
+	border: 0.5px solid #4423E624;
 }
