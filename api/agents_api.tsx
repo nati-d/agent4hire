@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:5000";
-// const BASE_URL = process.env.REACT_APP_BASE_URL || "https://agents4hire-154919156893.us-central1.run.app";
+// const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:5000";
+const BASE_URL = process.env.REACT_APP_BASE_URL || "https://agents4hire-154919156893.us-central1.run.app";
 
 export const fetchAgents = async () => {
   try {
