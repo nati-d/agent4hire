@@ -27,6 +27,7 @@ function FeaturedAgents() {
 						userPersona={agent.description}
 						availableApis={[]}
 						rating={4}
+						id = "A001"
 					/>
 				))}
 			</div>
