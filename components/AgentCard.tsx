@@ -10,6 +10,7 @@ import IntegratedApps from "./Shared/IntegratedApps";
 import Languages from "./Resume/Languages";
 import Tags from "./Resume/Tags";
 import Traits from "./profile/Traits";
+import { getAgentSkill, getAgentTag, getAgentTraits } from "@/api";
 
 const agent = {
 	id: "A001",
@@ -26,9 +27,9 @@ const agent = {
 		{type: "address", label: "Address", value: "Digital Workspace"},
 	],
 	languageData: [
-		{flag: "🇬🇧", language: "English", level: "Native"},
-		{flag: "🇫🇷", language: "French", level: "Fluent"},
-		{flag: "🇩🇪", language: "German", level: "Intermediate"},
+		{flag: "", language: "English", level: "Native"},
+		{flag: "", language: "French", level: "Fluent"},
+		{flag: "", language: "German", level: "Intermediate"},
 	],
 	experiences: [
 		{
@@ -170,6 +171,7 @@ interface AgentCardProps {
 	rating: number;
 	tags?: string[];
 	price?: string;
+	id: string;
 	onHireNow?: () => void;
 	onPreview?: () => void;
 }
@@ -179,13 +181,17 @@ const AgentCard: React.FC<AgentCardProps> = ({
 	userPersona,
 	availableApis,
 	rating = 4,
-	tags = ["Automation", "Workflow"],
 	price = "$15",
+	id,
 	onHireNow,
 	onPreview,
 }) => {
 	const [isOpen, setIsOpen] = React.useState(false);
 	const [isCustizeOpen, setIsCustomizeOpen] = React.useState(false);
+	const [isPreviewing, setIsPreviewing] = React.useState(false);
+	const [tags, setTags] = React.useState<string[]>([]);
+	const [skills, setSkills] = React.useState<string[]>([]);
+	const [traits, setTraits] = React.useState<string[]>([]);
 
 	const handleCustomizeOpen = () => {
 		setIsCustomizeOpen(true);
@@ -204,10 +210,49 @@ const AgentCard: React.FC<AgentCardProps> = ({
 		setIsOpen(false);
 	};
 
+	const handlePreviewOpen = async (id: string) => {
+		try {
+			console.log(id);
+			const [tagsData, skillsData, traitsData] = await Promise.all([
+				getAgentTag(id),
+				getAgentSkill(id),
+				getAgentTraits(id),
+			]);
+			
+			// Safely extract data with null checks
+			const tagNames = tagsData?.[0]?.tags?.map((tag: any) => tag.name || tag) || [];
+			const skillNames = skillsData?.[0]?.skills?.map((skill: any) => skill.name || skill) || [];
+			const traitNames = traitsData?.[0]?.traits?.map((trait: any) => trait.name || trait) || [];
+
+			setTags(tagNames);
+			setSkills(skillNames);
+			setTraits(traitNames);
+			console.log({ tagNames, skillNames, traitNames }, "Data fetched");
+
+			if (skillNames.length > 0) {
+				agent.coreAbilities = skillNames;
+			}
+			
+			setIsPreviewing(true);
+		} catch (error) {
+			setIsPreviewing(false);
+			console.error("Error fetching agent data:", error);
+			// Set empty arrays on error
+			setTags([]);
+			setSkills([]);
+			setTraits([]);
+		}
+	};
+	  
+
+	const handlePreviewClose = () => {
+		setIsPreviewing(false);
+	}
+
 	return (
-		<div className='p-[16px] rounded-lg border  border-[#4423E61A] max-w-[400px] '>
+		<div className='p-[12px] rounded-lg border  border-[#4423E61A] max-w-[400px] '>
 			{/* Header Section */}
-			<div className='relative rounded-md w-full h-[220px] overflow-hidden pt-2'>
+			<div className='relative rounded-md w-full h-[150px] overflow-hidden pt-2'>
 				<div className='absolute w-full flex justify-between items-center z-20 px-2'>
 					<div className='light-gradient rounded-full p-1'>
 						<div className='bg-white-a0 px-2 py-1 rounded-full text-[12px]'>
@@ -230,13 +275,13 @@ const AgentCard: React.FC<AgentCardProps> = ({
 			{/* Rating and Info Section */}
 			<div className='w-full flex items-center justify-between mt-1'>
 				<StarRating rating={rating} />
-				<span className='text-[16px] font-[400]'>{rating}</span>
+				<span className='text-[14px] font-[400]'>{rating}</span>
 			</div>
 
-			<h1 className='text-[24px] font-bold line-clamp-1'>{role}</h1>
-			<p className='text-[14px] font-[300] mt-2 text-gray-500 line-clamp-2'>{userPersona}</p>
+			<h1 className='text-[18px] font-bold line-clamp-1'>{role}</h1>
+			<p className='text-[12px] font-[300] mt-2 text-gray-500 line-clamp-2'>{userPersona}</p>
 
-			{/* Tags Section */}
+			{/* Tags Section
 			<div className='flex flex-wrap gap-2 items-center my-2'>
 				{tags.map((tag, index) => (
 					<div
@@ -246,19 +291,19 @@ const AgentCard: React.FC<AgentCardProps> = ({
 						{tag}
 					</div>
 				))}
-			</div>
+			</div> */}
 
 			{/* Buttons Section */}
-			<div className='flex justify-center gap-3 mt-1 w-full'>
+			<div className='flex justify-center gap-3 mt-4 w-full'>
 				<CustomButton
 					label='Preview'
 					icon={<Eye className='w-[16px] h-[16px] text-primary' />}
-					additionalClass='bg-[#4423E60F] gap-[8px] py-[8px] px-[12px] gradient-text rounded-lg flex-1 border border-purple-custom py-1 px-2 text-[14px]'
-					onClick={handleOpen}
+					additionalClass='bg-[#4423E60F] gap-[8px] py-[14px] px-[12px] gradient-text rounded-lg flex-1 border border-primary  text-[14px]'
+					onClick={() => handlePreviewOpen(id)}
 				/>
 				<CustomButton
 					label='Hire Now'
-					additionalClass='gradient border rounded-lg py-2 px-4 text-[14px] text-white-a0'
+					additionalClass='gradient border rounded-lg py-[12px] px-[14px] text-[14px] text-white-a0'
 					icon={
 						<div className='p-1 border border-white-a0 rounded-full'>
 							<Rocket className='w-3 h-3 text-white-a0' />
@@ -270,10 +315,10 @@ const AgentCard: React.FC<AgentCardProps> = ({
 
 			{/* Resume Modal/Sheet Section */}
 			<Sheet
-				open={isOpen}
-				onOpenChange={handleClose}
+				open={isPreviewing}
+				onOpenChange={handlePreviewClose}
 			>
-				<SheetContent className='sm:max-w-[1200px] w-full overflow-auto'>
+				<SheetContent className='sm:max-w-[1200px]  overflow-auto'>
 					<div className='w-full flex justify-between items-center'>
 						<SheetClose asChild>
 							<button className='p-2 hover:bg-gray-200 rounded-full'>
@@ -295,7 +340,7 @@ const AgentCard: React.FC<AgentCardProps> = ({
 							/>
 							<CustomButton
 								label='Customize'
-								additionalClass='gradient rounded-lg py-3 px-6 text-[12px]'
+								additionalClass='gradient rounded-lg py-3 px-6 text-[12px] text-white-a0'
 								icon={<Edit className='w-4 h-4 text-white-a0' />}
 								onClick={handleCustomizeOpen}
 							/>
@@ -311,7 +356,7 @@ const AgentCard: React.FC<AgentCardProps> = ({
 						<div className='space-y-4 px-2 max-w-[300px]'>
 							<IntegratedApps availableApis={availableApis} />
 							<Languages languageData={agent.languageData} />
-							<Tags />
+							<Tags tags={tags} />
 						</div>
 						<div className='flex-1'>
 							<Timeline
@@ -329,7 +374,7 @@ const AgentCard: React.FC<AgentCardProps> = ({
 				onOpenChange={handleCustomizeClose}
 			>
 				<SheetContent className='sm:max-w-[1200px] w-full overflow-auto'>
-					<div className='w-full flex justify-between items-center'>
+					<div className='w-full flex justify-between items-center mb-4'>
 						<SheetClose asChild>
 							<button className='p-2 hover:bg-gray-200 rounded-full'>
 								<PanelRightClose className='w-8 h-8 text-primary' />
@@ -343,7 +388,7 @@ const AgentCard: React.FC<AgentCardProps> = ({
 							/>
 							<CustomButton
 								label='Save'
-								additionalClass='gradient rounded-lg py-3 px-6 text-[12px]'
+								additionalClass='gradient rounded-lg py-3 px-6 text-[12px] text-white-a0'
 								icon={<Check className='w-4 h-4 text-white-a0' />}
 							/>
 						</div>
@@ -356,7 +401,7 @@ const AgentCard: React.FC<AgentCardProps> = ({
 					/>
 					<div className='flex gap-2 mt-8 flex-wrap'>
 						<div className='space-y-4 px-2  max-w-[300px]'>
-							<Traits />
+							<Traits traits={traits} />
 							<IntegratedApps availableApis={availableApis} />
 						</div>
 						<div className='flex-1 '>

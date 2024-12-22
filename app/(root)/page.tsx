@@ -43,14 +43,12 @@ export default function Home() {
 			</div>
 			<div className='bg-white-a0 py-8'>
 				<div className="container flex flex-col items-center justify-center gap-4">
-					<h1 className="text-[28px] font-semibold">Still Have Questions?</h1>
-					<p className="text-[12px]">Feel free to reach out to us for any further assistance.</p>
-					<div className='gradient p-1 rounded-lg flex items-center justify-center w-max'>
+					<h1 className="text-[24px] font-[500]">Still Have Questions?</h1>
+					<p className="text-[16px]">Feel free to reach out to us for any further assistance.</p>
 						<CustomButton
 							label='Contact Us'
-							additionalClass='bg-white-a0 rounded-md py-2 px-6 text-[12px]'
+							additionalClass='bg-white-a0 border-[1.5px] border-primary rounded-md py-[12px] px-[24px] font-[500] text-[18px]'
 						/>
-					</div>
 				</div>
 			</div>
 		</section>

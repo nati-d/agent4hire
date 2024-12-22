@@ -657,6 +657,8 @@ export const PRICING_TIERS = [
 			"Advanced analytics dashboard with export options",
 			"Role-based recommendations for agents",
 			"Priority customer support",
+			"Priority customer support",
+			"Priority customer support",
 		],
 	},
 	{

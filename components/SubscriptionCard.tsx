@@ -19,10 +19,10 @@ interface PricingCardProps {
 
 export function SubscriptionCard({name, description, price, features, buttonText, popular}: PricingTier) {
 	return (
-		<Card className={`flex flex-col ${popular ? "border-primary shadow-lg" : ""}`}>
-			<CardHeader>
+		<div className={`flex flex-col bg-transparent  rounded-md p-[24px] h-max ${popular ? "border border-primary " : "border border-b-0 border-[#4423E633]"}`}>
+			<div>
 				<div className='flex items-center justify-between'>
-					<h3 className='text-[20px] font-bold'>{name}</h3>
+					<h3 className='text-[18px] font-bold'>{name}</h3>
 					{popular && (
 						<div className='text-[10px] flex items-center gap-2 bg-[#4423E60D] border border-primary rounded-full px-2 font-semibold'>
 							<Sparkle className='w-2 h-2 text-primary' />
@@ -30,13 +30,13 @@ export function SubscriptionCard({name, description, price, features, buttonText
 						</div>
 					)}
 				</div>
-				<p className='text-[12px] text-muted-foreground'>{description}</p>
-				<p className='text-[28px] font-bold'>{price}</p>
-			</CardHeader>
-			<CardContent className='flex-1'>
+				<p className='text-[14px] text-muted-foreground '>{description}</p>
+				<p className='text-[28px] font-bold mt-[16px]'>{price}</p>
+			</div>
+			<div className='flex-1 mt-[24px]'>
 				<Button
-					variant={name === "Pro" ? "default" : "outline"} // Conditional variant
-					className='w-full'
+					variant={name === "Pro" ? "default" : "outline"} 
+					className={`w-full ${name === "Pro" ? "gradient text-white-a0" : "bg-transparent border border-primary"}`}
 					size='lg'
 				>
 					{buttonText}
@@ -52,7 +52,7 @@ export function SubscriptionCard({name, description, price, features, buttonText
 						</li>
 					))}
 				</ul>
-			</CardContent>
-		</Card>
+			</div>
+		</div>
 	);
 }

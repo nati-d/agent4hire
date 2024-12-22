@@ -7,7 +7,7 @@ import FeaturesSection from "./FeaturesSection";
 
 const Hero = () => {
 	return (
-		<section className=' flex relative  justify-center items-center mb-4  w-full px-4  py-32'>
+		<section className=' flex relative  justify-center items-center   w-full px-4  py-32'>
 			<Image
 				src='/images/hero.png'
 				alt='Hero Image'
@@ -15,7 +15,7 @@ const Hero = () => {
 			/>
 			<div className='z-10  container space-y-32 px-[100px]'>
 				<div className='max-w-[1000px] mx-auto'>
-					<h1 className='text-[64px] font-bold text-center leading-[1.2] max-md:text-4xl max-md:leading-[1.3]'>
+					<h1 className='text-[64px] font-bold text-center leading-[1.2] max-md:text-4xl max-md:leading-[1.3] font-poppins'>
 						Transforming Your Workflow With <span className='gradient-text'>Smart AI Agents</span>
 					</h1>
 					<p className='mt-8 text-[16px] font-[400] leading-relaxed text-center max-w-[1000px] mx-auto'>

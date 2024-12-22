@@ -7,7 +7,7 @@ import {SubscriptionCard} from "./SubscriptionCard";
 const SubscriptionPlan = () => {
 	return (
 		<section className='container'>
-			<div className='flex flex-col items-center justify-center'>
+			<div className='flex flex-col items-center justify-center mb-[24px]'>
 				<div className='py-2 px-4 b-1 border-primary rounded-full w-max flex border gap-4 items-center justify-center '>
 					<div className='p-1 rounded-full border flex items-center justify-center border-primary bg-primary'>
 						<DollarSignIcon className='h-4 w-4 text-white-a0 ' />
@@ -21,18 +21,18 @@ const SubscriptionPlan = () => {
 					defaultValue='monthly'
 					className='w-max '
 				>
-					<TabsList className='border border-primary py-2 px-2 rounded-full'>
+					<TabsList className='border border-primary py-[32px]  px-[24px] rounded-full'>
 						<TabsTrigger
 							value='monthly'
-							className='rounded-full font-semibold text-black data-[state=active]:bg-primary data-[state=active]:text-white-a0'
+							className='rounded-full px-[24px] py-[8px] font-[500] text-[16px] text-black data-[state=active]:bg-primary data-[state=active]:text-white-a0'
 						>
 							Monthly
 						</TabsTrigger>
 						<TabsTrigger
 							value='annual'
-							className='rounded-full flex gap-2 font-semibold items-center text-black data-[state=active]:bg-primary data-[state=active]:text-white-a0'
+							className='rounded-full flex gap-2 px-[24px] py-[8px] font-[500] text-[16px] items-center text-black data-[state=active]:bg-primary data-[state=active]:text-white-a0'
 						>
-							Annual <span className='border border-primary text-[10px] rounded-full px-2 bg-[#4423E60D]'>20% Off</span>
+							Annual <span className='py-[6px] px-[12px] bg-[#4423E60D] border-[0.5px] border-primary  text-[10px] rounded-full '>20% Off</span>
 						</TabsTrigger>
 					</TabsList>
 				</Tabs>
@@ -46,7 +46,6 @@ const SubscriptionPlan = () => {
                         price = {tier.price}
                         features = {tier.features}
                         buttonText = {tier.buttonText}
-                        // buttonVariant = {tier.buttonVariant}
                         popular = {tier.popular}
 					/>
 				))}

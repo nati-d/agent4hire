@@ -6,7 +6,7 @@ const RootLayout = ({children}: {children: ReactNode}) => {
 	return (
 		<main>
 			<Navbar />
-			<div className='pt-[100px] poppins'>
+			<div className='pt-[50px]'>
 				{children}
 			</div>
 			<Footer />

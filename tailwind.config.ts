@@ -84,6 +84,10 @@ const config: Config = {
 					custom: '#4423E60D', 
 				  },
     		},
+			fontFamily: {
+				sans: ['var(--font-inter)'],
+				poppins: ['var(--font-poppins)'],
+			},
     		keyframes: {
     			'accordion-down': {
     				from: {

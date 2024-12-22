@@ -4,9 +4,9 @@ import React, {ReactNode} from "react";
 const MarketplaceLayout = ({children}: {children: ReactNode}) => {
 	return (
 		<main
-			className='container flex gap-2'
+			className='container flex gap-1 '
 		>
-			<div className="hidden md:block">
+			<div className="hidden md:block mt-[50px]">
 				<AgentFilter />
 			</div>
 			{children}

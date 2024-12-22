@@ -15,7 +15,7 @@ const MenuItems = () => {
 					<Link
 						key={item.name}
 						href={item.href}
-						className={`py-1 font-[500] relative transition-colors duration-200 text-[20px] ${
+						className={`py-1 font-[500] relative transition-colors duration-200 text-[16// Add more weights if neededpx] ${
 							isActive
 								? "gradient-text after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-gradient-to-r after:from-[#7517e2]  after:to-[#1799e2]"
 								: "text-foreground hover:bg-accent hover:text-accent-foreground"

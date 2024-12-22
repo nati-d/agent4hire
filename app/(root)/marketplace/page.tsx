@@ -56,7 +56,7 @@ const MarketplacePage: React.FC = () => {
   const displayedAgents = agents.slice((currentPage - 1) * AGENTS_PER_PAGE, currentPage * AGENTS_PER_PAGE);
 
   return (
-    <section className="container">
+    <section className="w-full  mt-[50px]">
       <SearchInterface />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8 justify-center">
         {loading
@@ -67,6 +67,7 @@ const MarketplacePage: React.FC = () => {
                 role={agent.role}
                 userPersona={agent.description.user_persona}
                 availableApis={agent.available_apis}
+                id = {agent.id}
                 rating={4}
               />
             ))}
@@ -75,16 +76,13 @@ const MarketplacePage: React.FC = () => {
         <NoDataIllustration
           type="Agent"
           message={error}
-        //   onActionClick={() => window.location.reload()}
-        //   actionLabel="Retry"
         />
       )}
       {!loading && !error && agents.length === 0 && (
         <NoDataIllustration
           type="Agent"
           message="No agents available at the moment."
-        //   actionLabel="Add Agent"
-        //   onActionClick={() => console.log("Redirecting to agent creation...")}
+      
         />
       )}
       {!loading && !error && agents.length > 0 && (

@@ -94,6 +94,7 @@ const ChatInterface: React.FC = () => {
     }
   } catch (error) {
     console.error('Error submitting answers:', error);
+    setLoading(false)
     setMessages((prev) => [
       ...prev,
       { sender: 'ai', text: 'Something went wrong. Please try again later.' },
@@ -118,6 +119,7 @@ const ChatInterface: React.FC = () => {
       setShowChat(true)
       setIsSubmitting(false)
     } catch (error) {
+      setIsSubmitting(false)
       console.error('Error creating agent:', error)
     }
   }

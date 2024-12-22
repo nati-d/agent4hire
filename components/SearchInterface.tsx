@@ -44,26 +44,26 @@ export default function SearchInterface() {
 	}, []);
 
 	return (
-		<div className='w-full mx-auto p-6 space-y-6 light-gradient mb-4'>
+		<div className='w-full mx-auto p-6 space-y-6 light-gradient mb-4 '>
 			<div className='flex gap-4'>
-				<div className='relative flex-1 rounded-full'>
+				<div className='relative flex-1 rounded-full h-[56px]'>
 					<Search className='absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 h-4 w-4' />
 					<Input
-						className='w-full pl-10 rounded-full'
+						className='w-full pl-10 rounded-full h-full'
 						placeholder='What type of agent are you looking to hire?'
 						type='search'
 					/>
 				</div>
-				<Button className='gradient text-white-a0 rounded-full hover:bg-gray-100'>
+				<button className='flex items-center gradient text-white-a0 rounded-full px-[24px] py-[16px] hover:bg-gray-100'>
 					<Search className='h-4 w-4 md:mr-2' />
-					<span className=''>Search</span>
-				</Button>
-				<div className='bg-white-a0 rounded-md border hidden md:block'>
+					<span className='text-[18px]'>Search</span>
+				</button>
+				<div className='bg-transparent rounded-lg border-[0.5px] overflow-hidden w-[110px] border-[#4423E6] hidden md:block'>
 					<Select>
-						<SelectTrigger className='w-[120px] bg-transparent border-none text-white'>
+						<SelectTrigger className='w-full px-[18px] py-[14px] h-full  flex justify-between items-center text-[14px] bg-transparent border-none text-white'>
 							<SelectValue placeholder='Sort By' />
 						</SelectTrigger>
-						<SelectContent>
+						<SelectContent className="h-full">
 							<SelectItem value='newest'>Newest</SelectItem>
 							<SelectItem value='oldest'>Oldest</SelectItem>
 							<SelectItem value='popular'>Popular</SelectItem>
@@ -74,7 +74,7 @@ export default function SearchInterface() {
 
 			<div className='space-y-4'>
 				<div className='w-full flex items-center justify-between'>
-					<h2 className='text-2xl font-semibold text-white'>Popular</h2>
+					<h2 className='text-[28px] font-semibold text-white'>Popular</h2>
 					<div className='bg-white-a0 rounded-md border md:hidden'>
 						<Select>
 							<SelectTrigger className='w-[120px] bg-transparent border-none text-white'>
@@ -99,13 +99,16 @@ export default function SearchInterface() {
 							<Button
 								key={category.id}
 								variant='default'
-								className={`rounded-full border border-primary flex-shrink-0 ${
-									selectedCategory === category.id ? "bg-primary text-white-a0" : "bg-white text-black"
+								className={`rounded-full border border-primary px-[24px] py-[12px] flex-shrink-0 ${
+									selectedCategory === category.id ? "bg-primary text-white-a0" : "bg-white-a0 text-black"
 								}`}
 								onClick={() => setSelectedCategory(category.id)}
 							>
 								{category.icon && <category.icon className='h-4 w-4 mr-2' />}
+								<span className="text-[14px]">
+
 								{category.label}
+								</span>
 							</Button>
 						))}
 					</div>

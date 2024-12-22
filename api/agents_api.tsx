@@ -1,8 +1,7 @@
 import axios from "axios";
-import { get } from "http";
 
-// const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:5000";
-const BASE_URL = process.env.REACT_APP_BASE_URL || "https://agents4hire-154919156893.us-central1.run.app";
+const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:5000";
+// const BASE_URL = process.env.REACT_APP_BASE_URL || "https://agents4hire-154919156893.us-central1.run.app";
 
 export const fetchAgents = async () => {
   try {
@@ -83,3 +82,33 @@ export const createGoals = async () => {
 
 }
 
+export const getAgentTag = async (id : string) => {
+  try {
+    const response = await axios.get(`${BASE_URL}/agents/tags/${id}`, { withCredentials: true });
+    return response.data;
+  } catch (error) {
+    console.error("Error getting agent tag:", error);
+    throw error;
+  }
+};
+
+
+export const getAgentSkill = async (id : string) => {
+  try {
+    const response = await axios.get(`${BASE_URL}/agents/skills/${id}`, { withCredentials: true });
+    return response.data;
+  } catch (error) {
+    console.error("Error getting agent skill:", error);
+    throw error;
+  }
+};
+
+export const getAgentTraits = async (id : string) => {
+  try {
+    const response = await axios.get(`${BASE_URL}/agents/traits/${id}`, { withCredentials: true });
+    return response.data;
+  } catch (error) {
+    console.error("Error getting agent traits:", error);
+    throw error;
+  }
+};

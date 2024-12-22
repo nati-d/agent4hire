@@ -1,14 +1,22 @@
 import React from "react";
 
-const Tags = () => {
+const Tags = ({ tags }: { tags: string[] }) => {
 	return (
 		<div>
-			<h1 className='font-semibold text-[14px] mb-2'>Tags</h1>
-			<div className='flex flex-wrap  gap-2 px-2'>
-				<div className='bg-white-a0 px-4 py-1 text-[12px] rounded-full border border-primary text-gray-600'>Task-Automation</div>
-				<div className='bg-white-a0 px-4 py-1 text-[12px] rounded-full border border-primary text-gray-600'>Adaptive</div>
-				<div className='bg-white-a0 px-4 py-1 text-[12px] rounded-full border border-primary text-gray-600'>Personalized-Support</div>
-				<div className='bg-white-a0 px-4 py-1 text-[12px] rounded-full border border-primary text-gray-600'>Productive Boost</div>
+			<h1 className="font-semibold text-[14px] mb-2">Tags</h1>
+			<div className="flex flex-wrap gap-2">
+				{tags && tags.length > 0 ? (
+					tags.map((tag, index) => (
+						<div
+							key={index}
+							className="bg-[#4423E60D] px-[8px] py-[4px] text-[12px] font-[400] rounded-full"
+						>
+							{tag}
+						</div>
+					))
+				) : (
+					<p className="text-gray-500 text-[12px]">No tags available</p>
+				)}
 			</div>
 		</div>
 	);

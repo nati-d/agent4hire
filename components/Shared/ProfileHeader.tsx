@@ -13,7 +13,7 @@ type ProfileHeaderProps = {
 
 const ProfileHeader = ({image, role, userPersona, rating}: ProfileHeaderProps) => {
 	return (
-		<div className='w-full light-gradient p-4 rounded-lg flex flex-col sm:flex-row gap-4 sm:gap-8'>
+		<div className='w-full light-gradient p-4 rounded-lg mt-4 flex flex-col sm:flex-row gap-4 sm:gap-8'>
 			<div className='relative w-full sm:w-[150px] md:w-[200px] h-[200px] sm:h-[150px] md:h-[200px] rounded-lg overflow-hidden mx-auto sm:mx-0'>
 				<Image
 					src={image}
